@@ -1,0 +1,256 @@
+Microsoft Windows [version 10.0.26200.9457]
+(c) Microsoft Corporation. Tous droits réservés.
+
+C:\Users\matth>cd C:\Users\matth\Documents\Polytech\2ème année\Base de donnée\TP\TP3
+
+C:\Users\matth\Documents\Polytech\2ème année\Base de donnée\TP\TP3>sqlite3
+SQLite version 3.54.0 2026-10-09 15:46:58
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+SQLite-3.54 memory-> .open exo1.db
+SQLite-3.54 exo1.db-> create table users (
+                 );-> username VARCHAR(255) not null,
+                 );-> email varchar(255) not null,
+                 );-> ;
+Parse error near line 2: near ";": syntax error
+  RCHAR(255) not null, email varchar(255) not null, ;
+                                      error here ---^
+SQLite-3.54 exo1.db-> create table users (
+                 );-> email varchar(255) not null primary key,
+                 );->
+                 );-> ;
+Parse error near line 6: near ";": syntax error
+  users ( email varchar(255) not null primary key,  ;
+                                      error here ---^
+SQLite-3.54 exo1.db-> create table users (
+                 );-> username VARCHAR(255) not null primary key,
+                 );-> email varchar(255) not null,
+                 );-> );
+Parse error near line 10: near ")": syntax error
+  ot null primary key, email varchar(255) not null, );
+                                      error here ---^
+SQLite-3.54 exo1.db-> create table users (
+                 );-> email varchar(255) not null primary key,
+                 );-> username VARCHAR(255) not null,
+                 );-> );
+Parse error near line 14: near ")": syntax error
+  null primary key, username VARCHAR(255) not null, );
+                                      error here ---^
+SQLite-3.54 exo1.db-> create table users (
+                 );-> username VARCHAR(255) not null primary key,
+                 );-> email varchar(255) not null
+                 );-> );
+SQLite-3.54 exo1.db-> .table
+users
+SQLite-3.54 exo1.db-> create table tags (
+                 );-> id integer not null primary key autoincrement,
+                 );-> value varchar(255) not null,
+                 );-> usable bool not null default 0
+                 );-> );
+SQLite-3.54 exo1.db-> .TABLE
+Error: unknown command or invalid arguments:  "TABLE". Enter ".help" for help
+SQLite-3.54 exo1.db-> .table
+tags     users
+SQLite-3.54 exo1.db-> create table projects (
+                 );-> pkey varchar(255) primary key,
+                 );-> name varchar(255) not null,
+                 );-> owner varchar(255),
+                 );-> constraint fk_owner
+                 );-> foreign key (owner) references users(username)
+                 );-> );
+SQLite-3.54 exo1.db-> .table
+projects     tags     users
+SQLite-3.54 exo1.db-> .help
+.archive ...             Manage SQL archives
+.auth ON|OFF             Show authorizer callbacks
+.backup ?DB? FILE        Backup DB (default "main") to FILE
+.bail on|off             Stop after hitting an error.  Default OFF
+.cd DIRECTORY            Change the working directory to DIRECTORY
+.changes on|off          Show number of rows changed by SQL
+.check OPTIONS ...       Verify the results of a .testcase
+.clone NEWDB             Clone data into NEWDB from the existing database
+.connection [close] [#]  Open or close an auxiliary database connection
+.crlf ?on|off?           Whether or not to use \r\n line endings
+.databases               List names and files of attached databases
+.dbconfig ?op? ?val?     List or change sqlite3_db_config() options
+.dbinfo ?DB?             Show status information about the database
+.dbtotxt                 Hex dump of the database file
+.diskused ?SCHEMA?       Report database space and size stats
+.dump ?OBJECTS?          Render database content as SQL
+.echo on|off             Turn command echo on or off
+.eqp on|off|full|...     Enable or disable automatic EXPLAIN QUERY PLAN
+.excel                   Display the output of next command in spreadsheet
+.exit ?CODE?             Exit this program with return-code CODE
+.expert                  EXPERIMENTAL. Suggest indexes for queries
+.explain ?on|off|auto?   Change the EXPLAIN formatting mode.  Default: auto
+.filectrl CMD ...        Run various sqlite3_file_control() operations
+.fullschema ?--indent?   Show schema and the content of sqlite_stat tables
+.headers on|off          Turn display of headers on or off
+.help ?-all? ?PATTERN?   Show help text for PATTERN
+.import FILE TABLE       Import data from FILE into TABLE
+.imposter INDEX TABLE    Create imposter table TABLE on index INDEX
+.indexes ?PATTERN?       Show names of indexes matching PATTERN
+.intck ?STEPS?           Run an incremental integrity check on the db
+.limit ?LIMIT? ?VAL?     Display or change the value of an SQLITE_LIMIT
+.lint OPTIONS            Report potential schema issues.
+.load FILE ?ENTRY?       Load an extension library
+.log FILE|on|off         Turn logging on or off.  FILE can be stderr/stdout
+.mode ?MODE? ?OPTIONS?   Set output mode
+.nonce STRING            Suspend safe mode for one command if nonce matches
+.nullvalue STRING        Use STRING in place of NULL values
+.once ?OPTIONS? ?FILE?   Output for the next SQL command only to FILE
+.open ?OPTIONS? ?FILE?   Close existing database and reopen FILE
+.output ?FILE?           Send output to FILE or stdout if FILE is omitted
+.parameter CMD ...       Manage SQL parameter bindings
+.print STRING...         Print literal STRING
+.progress N              Invoke progress handler after every N opcodes
+.prompt MAIN CONTINUE    Replace the standard prompts
+.quit                    Stop interpreting input stream, exit if primary.
+.read FILE               Read input from FILE or command output
+.recover                 Recover as much data as possible from corrupt db.
+.restore ?DB? FILE       Restore content of DB (default "main") from FILE
+.save ?OPTIONS? FILE     Write database to FILE (an alias for .backup ...)
+.scanstats on|off|est    Turn sqlite3_stmt_scanstatus() metrics on or off
+.schema ?PATTERN?        Show the CREATE statements matching PATTERN
+.session ?NAME? CMD ...  Create or control sessions
+.sha3sum ...             Compute a SHA3 hash of database content
+.shell CMD ARGS...       Run CMD ARGS... in a system shell
+.stats ?ARG?             Show stats or turn stats on or off
+.system CMD ARGS...      Run CMD ARGS... in a system shell
+.tables ?TABLE?          List names of tables matching LIKE pattern TABLE
+.testcase NAME           Begin a test case.
+.timeout MS              Try opening locked tables for MS milliseconds
+.timer on|off|once       Turn SQL timer on or off.
+.trace ?OPTIONS?         Output each SQL statement as it is run
+.version                 Show source, library and compiler versions
+.vfsinfo ?AUX?           Information about the top-level VFS
+.vfslist                 List all available VFSes
+.vfsname ?AUX?           Print the name of the VFS stack
+.www                     Display output of the next command in web browser
+SQLite-3.54 exo1.db-> pragma foreign_keys=ON;
+SQLite-3.54 exo1.db-> create table project_tags (
+                 );-> project_pkey varchar(255),
+                 );-> tag_id integer,
+                 );-> primary key (project_pkey, tag_id)
+                 );-> foreign key (project_key) references projects(pkey),
+                 );-> foreign key (tag_id) references tags(id)
+                 );-> );
+Parse error near line 40: unknown column "project_key" in foreign key definition
+SQLite-3.54 exo1.db-> create table project_tags (
+                 );-> project_pkey varchar(255),
+                 );-> tag_id integer,
+                 );-> primary key (project_pkey, tag_id),
+                 );-> foreign key (project_pkey) references projects(pkey),
+                 );-> foreignkey (tag_id) references tags(id)
+                 );-> );
+Parse error near line 47: near "foreignkey": syntax error
+  ign key (project_pkey) references projects(pkey), foreignkey (tag_id) referenc
+                                      error here ---^
+SQLite-3.54 exo1.db->  create table project_tags (
+                 );->                  );-> project_pkey varchar(255),
+                  ;->                  );-> tag_id integer,
+                  ;->                  );-> primary key (project_pkey, tag_id),
+                  ;->                  );-> foreign key (project_pkey) references projects(pkey),
+                  ;->                  );-> foreignkey (tag_id) references tags(id)
+                  ;-> ;
+Parse error near line 54: near ")": syntax error
+  create table project_tags (                  );-> project_pkey varchar(255),
+                                 error here ---^
+SQLite-3.54 exo1.db-> create table project_tag (
+                 );-> project_pkey varchar(255),
+                 );-> tag_id integer,
+                 );-> primary key (project_pkey, tag_id),
+                 );-> foreign key (project_pkey) references projects(pkey),
+                 );-> foreign key (tag_id) references tags(id)
+                 );-> );
+SQLite-3.54 exo1.db-> .table
+project_tag     projects     tags     users
+SQLite-3.54 exo1.db-> insert into users values
+                  ;-> ('github', 'info@github.com'),
+                  ;-> ('f.potencier', 'no-reply@symfony.fr');
+SQLite-3.54 exo1.db-> insert into tags values
+                  ;-> ('C', 0),
+                  ;-> ('C++', 1),
+                  ;-> ('Java', 1),
+                  ;-> ('PHP', 1),
+                  ;-> ('Ruby', 1),
+                  ;-> ('Internal', 0),
+                  ;-> ('Debug', 0),
+                  ;-> ('Develop', 0);
+Parse error near line 72: table tags has 3 columns but 2 values were supplied
+SQLite-3.54 exo1.db-> delete project_tag
+                  ;-> ;
+Parse error near line 81: near "project_tag": syntax error
+  delete project_tag ;
+         ^--- error here
+SQLite-3.54 exo1.db-> drop table project_tag;
+SQLite-3.54 exo1.db-> .table
+projects     tags     users
+SQLite-3.54 exo1.db-> create table project_tag(
+                 );-> project_pkey varchar(255),
+                 );-> tag_id integer,
+                 );-> primary key (project_pkey, tag_id),
+                 );-> contraint fk_project_pkey foreign key (project_pkey) references projects(pkey)
+                 );-> constraint fk_tag_id foreign key (tag_id) references tags(id)
+                 );-> );
+Parse error near line 85: near "contraint": syntax error
+  g_id integer, primary key (project_pkey, tag_id), contraint fk_project_pkey fo
+                                      error here ---^
+SQLite-3.54 exo1.db-> create table project_tag(
+                 );-> project_pkey varchar(255),
+                 );-> tag_id integer,
+                 );-> primary key (project_pkey, tag_id),
+                 );-> constraint fk_project_pkey foreign key (project_pkey) references projects(pkey)
+                 );-> constraint fk_tag_id foreign key (tag_id) references tags(id)
+                 );-> );
+SQLite-3.54 exo1.db-> .table
+project_tag     projects     tags     users
+SQLite-3.54 exo1.db-> insert into tags (value, usable) values
+                  ;-> ('C', 0),
+                  ;-> ('C++',1),
+                  ;-> ('Java', 1),
+                  ;-> ('PHP', 1),
+                  ;-> ('Ruby', 1),
+                  ;-> ('Internal', 0),
+                  ;-> ('Debug', 0),
+                  ;-> ('Develop', 0);
+SQLite-3.54 exo1.db-> insert into projects values
+                  ;-> ('github', 'Github Platform', 'github'),
+                  ;-> ('symfony', 'Symfony Framework','f.potencier'),
+                  ;-> ('gist', 'Gist Env', null);
+SQLite-3.54 exo1.db-> insert into project_tag values
+                  ;-> ('github', 2),
+                  ;-> ('github', 6),
+                  ;-> ('github', 8),
+                  ;-> ('symfony', 4),
+                  ;-> ('gist', 6),
+                  ;-> ('gist', 7);
+SQLite-3.54 exo1.db-> .mode table
+SQLite-3.54 exo1.db-> select * from tags
+                  ;-> ;
++----+----------+--------+
+| id |  value   | usable |
++----+----------+--------+
+|  1 | C        |      0 |
+|  2 | C++      |      1 |
+|  3 | Java     |      1 |
+|  4 | PHP      |      1 |
+|  5 | Ruby     |      1 |
+|  6 | Internal |      0 |
+|  7 | Debug    |      0 |
+|  8 | Develop  |      0 |
++----+----------+--------+
+SQLite-3.54 exo1.db-> select * from project_tag
+                  ;-> ;
++--------------+--------+
+| project_pkey | tag_id |
++--------------+--------+
+| github       |      2 |
+| github       |      6 |
+| github       |      8 |
+| symfony      |      4 |
+| gist         |      6 |
+| gist         |      7 |
++--------------+--------+
+SQLite-3.54 exo1.db->
